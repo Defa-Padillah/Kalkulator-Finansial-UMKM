@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kalkulator Margin & Harga Jual UMKM</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1>Kalkulator Finansial UMKM</h1>
+      <p>Hitung Rekomendasi Harga Jual & Profit Bersih Bebas Potongan Admin</p>
+    </header>
+
+    <div class="calculator-grid">
+      <!-- Form Input Data -->
+      <div class="card form-card">
+        <h2>Input Biaya Produk</h2>
+        
+        <div class="form-group">
+          <label for="hpp">HPP / Modal Produk per Pcs (Rp)</label>
+          <input type="number" id="hpp" placeholder="Contoh: 50000" min="0" value="50000" />
+        </div>
+
+        <div class="form-group">
+          <label for="packing">Biaya Operasional & Packing per Pcs (Rp)</label>
+          <input type="number" id="packing" placeholder="Contoh: 3000" min="0" value="3000" />
+        </div>
+
+        <div class="form-group">
+          <label for="target-margin">Target Margin Keuntungan (%)</label>
+          <input type="number" id="target-margin" placeholder="Contoh: 20" min="1" max="99" value="20" />
+        </div>
+
+        <div class="form-group">
+          <label for="platform">Pilih Platform / Payment Channel</label>
+          <select id="platform">
+            <option value="custom">Custom Fee (%)</option>
+            <option value="midtrans_qris">Midtrans - QRIS (0.7%)</option>
+            <option value="midtrans_va">Midtrans - Virtual Account (Rp 4.400 / trx)</option>
+            <option value="shopee" selected>Shopee / Tokopedia (Rata-rata 6.5%)</option>
+            <option value="tiktok">TikTok Shop / Tokopedia (Rata-rata 6.0%)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="custom-fee-group">
+          <label for="admin-fee-percent">Persentase Admin Fee (%)</label>
+          <input type="number" id="admin-fee-percent" placeholder="Contoh: 6.5" step="0.1" value="6.5" />
+        </div>
+
+        <div class="form-group">
+          <label for="fixed-fee">Biaya Fixed Admin per Transaksi (Rp)</label>
+          <input type="number" id="fixed-fee" placeholder="Contoh: 1000" min="0" value="0" />
+        </div>
+
+        <button id="btn-calculate" class="btn-primary">Hitung Harga & Profit</button>
+      </div>
+
+      <!-- Hasil Perhitungan -->
+      <div class="card result-card">
+        <h2>Ringkasan Hasil</h2>
+
+        <div class="result-box highlight">
+          <span>Rekomendasi Harga Jual</span>
+          <h3 id="res-selling-price">Rp 0</h3>
+          <small>*Harga ini sudah menutup biaya modal + admin fee + target profit Anda</small>
+        </div>
+
+        <div class="result-details">
+          <div class="detail-row">
+            <span>Total Modal (HPP + Packing):</span>
+            <strong id="res-total-cost">Rp 0</strong>
+          </div>
+          <div class="detail-row">
+            <span>Estimasi Potongan Admin Fee:</span>
+            <strong id="res-admin-cost" class="text-danger">Rp 0</strong>
+          </div>
+          <div class="detail-row">
+            <span>Profit Bersih Diterima (Nett):</span>
+            <strong id="res-nett-profit" class="text-success">Rp 0</strong>
+          </div>
+          <div class="detail-row">
+            <span>Margin Keuntungan Efektif:</span>
+            <strong id="res-effective-margin">0%</strong>
+          </div>
+        </div>
+
+        <div class="simulation-box">
+          <h4>Atau Tes Harga Jual Anda Sendiri:</h4>
+          <div class="form-group inline">
+            <input type="number" id="manual-price" placeholder="Masukkan harga jual buatanmu" />
+            <button id="btn-check-manual" class="btn-secondary">Cek Profit</button>
+          </div>
+          <div id="manual-result-text" class="manual-result-text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
